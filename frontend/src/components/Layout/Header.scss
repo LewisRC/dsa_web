@@ -1,0 +1,250 @@
+// 狄耐克风格的Header样式
+.dnake-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  
+  .dnake-main-header {
+    background: transparent;
+    padding: 0;
+    height: 80px;
+    line-height: 80px;
+    border-bottom: none;
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      
+      .logo {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        
+        a {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          
+          .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            margin-right: 12px;
+          }
+          
+          .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1890ff;
+            white-space: nowrap;
+          }
+        }
+      }
+      
+      .main-navigation {
+        .nav-list {
+          display: flex;
+          align-items: center;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          gap: 40px;
+          
+          .nav-item {
+            position: relative;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            
+            a, .nav-dropdown {
+              color: #333;
+              text-decoration: none;
+              font-size: 16px;
+              font-weight: 500;
+              padding: 0 8px;
+              height: 40px;
+              line-height: 40px;
+              border-radius: 4px;
+              transition: all 0.3s ease;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              
+              &:hover {
+                color: #1890ff;
+                background: rgba(24, 144, 255, 0.05);
+              }
+              
+              &.nav-active {
+                color: #1890ff;
+                background: rgba(24, 144, 255, 0.1);
+                position: relative;
+                
+                &::after {
+                  content: '';
+                  position: absolute;
+                  bottom: -20px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: 20px;
+                  height: 3px;
+                  background: #1890ff;
+                  border-radius: 2px;
+                }
+              }
+              
+              .anticon {
+                font-size: 12px;
+                margin-left: 4px;
+                transition: transform 0.3s ease;
+              }
+            }
+            
+            &:hover .nav-dropdown .anticon {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 下拉菜单样式
+.ant-dropdown {
+  .ant-dropdown-menu {
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 8px 0;
+    min-width: 200px;
+    
+    .ant-dropdown-menu-item {
+      padding: 12px 20px;
+      font-size: 14px;
+      color: #333;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: rgba(24, 144, 255, 0.05);
+        color: #1890ff;
+      }
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+      }
+    }
+    
+    .ant-dropdown-menu-submenu {
+      .ant-dropdown-menu-submenu-title {
+        padding: 12px 20px;
+        font-weight: 600;
+        color: #262626;
+        font-size: 15px;
+        
+        &:hover {
+          background: rgba(24, 144, 255, 0.05);
+          color: #1890ff;
+        }
+      }
+      
+      .ant-dropdown-menu {
+        margin-left: 8px;
+        border-left: 2px solid #f0f0f0;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .dnake-header {
+    .dnake-main-header {
+      .container {
+        padding: 0 16px;
+        
+        .main-navigation {
+          .nav-list {
+            gap: 24px;
+            
+            .nav-item {
+              a, .nav-dropdown {
+                font-size: 15px;
+                padding: 0 6px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dnake-header {
+    .dnake-main-header {
+      height: 60px;
+      line-height: 60px;
+      
+      .container {
+        .logo {
+          height: 60px;
+          
+          a {
+            .logo-img {
+              height: 40px;
+            }
+            
+            .logo-text {
+              font-size: 20px;
+            }
+          }
+        }
+        
+        .main-navigation {
+          .nav-list {
+            gap: 16px;
+            
+            .nav-item {
+              height: 60px;
+              
+              a, .nav-dropdown {
+                font-size: 14px;
+                padding: 0 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 移动端隐藏部分导航项
+@media (max-width: 480px) {
+  .dnake-header {
+    .main-navigation {
+      .nav-list {
+        .nav-item {
+          &:nth-child(n+6) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

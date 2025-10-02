@@ -1,0 +1,556 @@
+// 动画关键帧定义
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 狄耐克风格的首页样式
+.dnake-home {
+  // 轮播图区域
+  .hero-banner {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    
+    .banner-carousel {
+      .ant-carousel .ant-carousel-dots {
+        bottom: 30px;
+        
+        li {
+          width: 12px;
+          height: 12px;
+          margin: 0 8px;
+          
+          button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            opacity: 1;
+          }
+          
+          &.ant-carousel-dot-active button {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+      
+      // 自定义箭头样式
+      .slick-prev,
+      .slick-next {
+        width: 50px;
+        height: 50px;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        
+        &:before {
+          font-size: 24px;
+          color: rgba(255, 255, 255, 0.8);
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        &:hover {
+          background: rgba(0, 0, 0, 0.5);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1.1);
+          
+          &:before {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+      
+      .slick-prev {
+        left: 30px;
+      }
+      
+      .slick-next {
+        right: 30px;
+      }
+      .banner-slide {
+        height: 80vh;
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        
+        .banner-background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 0;
+          overflow: hidden;
+          
+          .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.2);
+            transform-origin: center center;
+            transition: transform 5s ease-out;
+            
+            &.active {
+              transform: scale(1);
+            }
+          }
+        }
+        
+        
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          width: 100%;
+          position: relative;
+          z-index: 2;
+          
+          .banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            position: relative;
+            
+            .banner-text {
+              position: relative;
+              z-index: 2;
+              width: 50%;
+              max-width: 600px;
+              color: white;
+              padding-right: 60px;
+              text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.6);
+              
+              .banner-title {
+                font-size: 48px;
+                font-weight: 700;
+                margin-bottom: 16px;
+                line-height: 1.2;
+                opacity: 0;
+                transform: translateX(100px);
+                transition: all 0.8s ease-out;
+              }
+              
+              .banner-subtitle {
+                font-size: 20px;
+                font-weight: 400;
+                margin-bottom: 16px;
+                opacity: 0;
+                line-height: 1.4;
+                transform: translateX(100px);
+                transition: all 0.8s ease-out 0.2s;
+              }
+              
+              .banner-description {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 32px;
+                opacity: 0;
+                transform: translateX(100px);
+                transition: all 0.8s ease-out 0.4s;
+              }
+              
+              .banner-btn {
+                height: 48px;
+                padding: 0 32px;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 24px;
+                background: rgba(255, 255, 255, 0.9);
+                border: 2px solid rgba(255, 255, 255, 1);
+                color: #1890ff;
+                opacity: 0;
+                transform: translateX(100px);
+                transition: all 0.8s ease-out 0.6s;
+                
+                &:hover {
+                  background: rgba(255, 255, 255, 1);
+                  border-color: rgba(255, 255, 255, 1);
+                  transform: translateY(-2px) scale(1.05);
+                  color: #1890ff;
+                }
+              }
+              
+              &.active {
+                .banner-title {
+                  opacity: 1;
+                  transform: translateX(0);
+                }
+                
+                .banner-subtitle {
+                  opacity: 0.9;
+                  transform: translateX(0);
+                }
+                
+                .banner-description {
+                  opacity: 0.8;
+                  transform: translateX(0);
+                }
+                
+                .banner-btn {
+                  opacity: 1;
+                  transform: translateX(0);
+                  
+                  &:hover {
+                    transform: translateY(-2px) scale(1.05);
+                  }
+                }
+              }
+            }
+            
+          }
+        }
+      }
+    }
+  }
+  
+  // 产品分类区域
+  .product-categories {
+    padding: 80px 0;
+    background: #f8f9fa;
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      
+      h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #262626;
+        margin-bottom: 16px;
+      }
+      
+      p {
+        font-size: 16px;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+    
+    .product-category-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .ant-card-cover {
+        img {
+          height: 200px;
+          object-fit: cover;
+        }
+      }
+      
+      .ant-card-body {
+        padding: 24px;
+        
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #262626;
+          margin-bottom: 12px;
+        }
+        
+        p {
+          color: #666;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        }
+        
+        .learn-more {
+          color: #1890ff;
+          font-weight: 500;
+          padding: 0;
+          
+          &:hover {
+            color: #40a9ff;
+          }
+        }
+      }
+    }
+  }
+  
+  // 解决方案区域
+  .solutions-section {
+    padding: 80px 0;
+    background: white;
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      
+      h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #262626;
+        margin-bottom: 16px;
+      }
+      
+      p {
+        font-size: 16px;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+    
+    .solution-card {
+      text-align: center;
+      border-radius: 16px;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .ant-card-body {
+        padding: 40px 24px;
+        
+        .solution-icon {
+          font-size: 48px;
+          color: #1890ff;
+          margin-bottom: 24px;
+        }
+        
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #262626;
+          margin-bottom: 16px;
+        }
+        
+        p {
+          color: #666;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+  
+  // 统计数据区域
+  .stats-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1890ff 0%, #722ed1 100%);
+    
+    .stat-item {
+      text-align: center;
+      
+      .ant-statistic {
+        .ant-statistic-title {
+          color: rgba(255, 255, 255, 0.8) !important;
+          font-size: 16px !important;
+          font-weight: 500;
+        }
+        
+        .ant-statistic-content {
+          color: white !important;
+        }
+      }
+    }
+  }
+  
+  // 新闻区域
+  .news-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      
+      h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #262626;
+        margin-bottom: 16px;
+      }
+      
+      p {
+        font-size: 16px;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+    
+    .news-card {
+      border-radius: 16px;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      }
+      
+      .ant-card-body {
+        padding: 24px;
+        
+        .news-date {
+          color: #1890ff;
+          font-size: 14px;
+          font-weight: 500;
+          margin-bottom: 12px;
+        }
+        
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+          color: #262626;
+          margin-bottom: 12px;
+          line-height: 1.4;
+        }
+        
+        p {
+          color: #666;
+          line-height: 1.6;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+    }
+    
+    .section-footer {
+      text-align: center;
+      margin-top: 48px;
+      
+      .ant-btn {
+        height: 48px;
+        padding: 0 32px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 24px;
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .hero-banner {
+      .banner-carousel {
+        // 移动端箭头样式
+        .slick-prev,
+        .slick-next {
+          width: 40px;
+          height: 40px;
+          
+          &:before {
+            font-size: 20px;
+          }
+        }
+        
+        .slick-prev {
+          left: 15px;
+        }
+        
+        .slick-next {
+          right: 15px;
+        }
+        
+        .banner-slide {
+          height: 60vh;
+          min-height: 500px;
+          
+          .container {
+            .banner-content {
+              flex-direction: column;
+              text-align: center;
+              height: auto;
+              padding: 40px 0;
+              
+              .banner-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+                
+                .banner-title {
+                  font-size: 32px;
+                }
+                
+                .banner-subtitle {
+                  font-size: 18px;
+                }
+              }
+              
+              .banner-image {
+                img {
+                  max-height: 250px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .product-categories,
+    .solutions-section,
+    .news-section {
+      padding: 60px 0;
+      
+      .section-header {
+        margin-bottom: 40px;
+        
+        h2 {
+          font-size: 28px;
+        }
+      }
+    }
+    
+    .stats-section {
+      padding: 60px 0;
+      
+      .stat-item {
+        margin-bottom: 40px;
+        
+        .ant-statistic-content {
+          font-size: 36px !important;
+        }
+      }
+    }
+  }
+}
